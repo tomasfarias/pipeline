@@ -1,9 +1,10 @@
 """Start a simple Kafka producer that reads input from a file and emits messages.
 It acts as a placeholder for a real life application emitting events."""
 import argparse
+import datetime as dt
+from dateutil import parser
 import json
 import time
-from dateutil import parser
 from typing import List
 
 import kafka  # type: ignore

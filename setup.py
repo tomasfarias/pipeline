@@ -13,6 +13,8 @@ setup(
         'kafka-python==1.4.7',
         'python-dateutil==2.8.1',
         'pyyaml==5.2',
+        'SQLAlchemy==1.3.12',
+        'psycopg2==2.8.4',
     ],
     extras_require={
         'tests': [
@@ -25,6 +27,8 @@ setup(
     entry_points={
         'console_scripts': [
             'producer = pipeline.producer:main',
+            'consumer = pipeline.consumer:main',
+            'init-db = pipeline.init_db:main',
         ],
     }
 )

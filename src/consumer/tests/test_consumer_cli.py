@@ -28,10 +28,16 @@ def test_parse_ars_no_defaults():
 @mock.patch('sys.argv', TEST_ARGS)
 @mock.patch('consumer.consumer.super')
 @mock.patch('consumer.consumer.PostgreSQLConsumer.run')
-def test_run_consumer(mock_run, mock_super):
+@mock.patch('consumer.cli.create_engine')
+@mock.patch('consumer.cli.models.Base.metadata.create_all')
+def test_run_consumer(mock_db_create, mock_create, mock_run, mock_super):
+    mock_create.return_value = 'some_engine'
+
     args = cli.parse_args()
     cli.run_consumer(args)
 
+    mock_create.assert_called_once_with('postgresql://test:test@db:5432/database')
+    mock_db_create.assert_called_once()
     mock_super.assert_called_once()  # should always pass
     mock_run.assert_called_once()
 

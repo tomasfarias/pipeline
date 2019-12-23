@@ -1,8 +1,12 @@
 import argparse
 import json
+import os
+
+from sqlalchemy import create_engine  # type: ignore
 
 from utilities import setup_logging
 from consumer import consumer
+from consumer import models
 
 
 def main():
@@ -44,13 +48,21 @@ def parse_args() -> argparse.Namespace:
 
 
 def run_consumer(args: argparse.Namespace):
+    engine = create_engine(
+        f'postgresql://{os.environ["POSTGRES_USER"]}:{os.environ["POSTGRES_PASSWORD"]}'
+        f'@db:5432/{os.environ["POSTGRES_DB"]}'
+    )
+    models.Base.metadata.create_all(engine)
+
     postgresql_consumer = consumer.PostgreSQLConsumer(
         args.topic,
+        engine=engine,
         group_id='consumer-group',
+        max_poll_records=1,
         bootstrap_servers=[args.bootstrap_server],
         value_deserializer=lambda m: json.loads(m),
         auto_offset_reset='earliest',
         enable_auto_commit=False,
     )
 
-    postgresql_consumer.run()
+    postgresql_consumer.run(wait=5)

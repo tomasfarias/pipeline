@@ -1,20 +1,17 @@
 from setuptools import setup
-from setuptools import find_packages
 
 setup(
-    name='Pipeline',
+    name='producer',
     version='0.0.1',
     author='Tomas Farias',
     author_email='tomasfariassantana@gmail.com',
-    description='A Python data pipeline',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
+    description='A simple Python data pipeline',
+    packages=['producer', 'utilities'],
+    package_dir={'': '.'},
     install_requires=[
         'kafka-python==1.4.7',
         'python-dateutil==2.8.1',
         'pyyaml==5.2',
-        'SQLAlchemy==1.3.12',
-        'psycopg2==2.8.4',
     ],
     extras_require={
         'tests': [
@@ -26,9 +23,7 @@ setup(
     python_requires=">=3.7",
     entry_points={
         'console_scripts': [
-            'producer = pipeline.producer:main',
-            'consumer = pipeline.consumer:main',
-            'init-db = pipeline.init_db:main',
+            'producer = producer.cli:main',
         ],
     }
 )

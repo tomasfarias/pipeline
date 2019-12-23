@@ -29,27 +29,15 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_DB=pipeline
+      - POSTGRES_DB=postgres
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=test
     volumes:
       - 'postgresql:/var/lib/postgresql'
       - 'postgresql_data:/var/lib/postgresql/data'
 
-  init-db:
-    build: .
-    ports:
-      - '5002:5002'
-    environment:
-      - POSTGRES_DB=pipeline
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=test
-    command: init-db
-    depends_on:
-      - db
-
   producer:
-    build: .
+    build: src/producer/
     ports:
       - '5000:5000'
     command: producer -i data/events.json -d
@@ -57,12 +45,18 @@ services:
       - kafka
 
   consumer:
-    build: .
+    build: src/consumer/
     ports:
       - '5001:5001'
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=test
     command: consumer -d
     depends_on:
       - kafka
+      - db
+      - producer
 
 volumes:
   zookeeper_data:

@@ -1,3 +1,4 @@
+"""The consumer CLI. Handles logging, database initialization and running the consumer"""
 import argparse
 import json
 import os

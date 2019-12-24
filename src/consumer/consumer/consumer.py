@@ -1,3 +1,5 @@
+"""A simple Kafka consumer that polls records from a topic and sends them over to
+PostgreSQL DB."""
 import logging
 from contextlib import contextmanager
 import datetime as dt

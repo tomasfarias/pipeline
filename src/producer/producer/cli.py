@@ -1,3 +1,4 @@
+"""Producer CLI tool. Handles logging configuration and runs the producer."""
 import argparse
 import json
 

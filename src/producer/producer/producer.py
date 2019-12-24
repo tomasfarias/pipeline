@@ -10,6 +10,7 @@ import kafka  # type: ignore
 
 
 class EventProducer(kafka.KafkaProducer):
+    """Emit events from a static JSON file"""
 
     def __init__(self, max_wait: int, min_wait: int, events: List, **kwargs):
         super().__init__(**kwargs)

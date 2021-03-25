@@ -11,7 +11,7 @@ setup(
     install_requires=[
         'pandas==0.25.1',
         'python-crontab==2.4.0',
-        'pyyaml==5.2',
+        'pyyaml==5.4',
         'SQLAlchemy==1.3.12',
         'psycopg2-binary==2.8.4',
     ],

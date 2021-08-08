@@ -11,7 +11,7 @@ setup(
     install_requires=[
         'kafka-python==1.4.7',
         'python-dateutil==2.8.1',
-        'pyyaml==5.2',
+        'pyyaml==5.4',
     ],
     extras_require={
         'tests': [

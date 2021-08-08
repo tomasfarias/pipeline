@@ -11,7 +11,7 @@ setup(
     install_requires=[
         'SQLAlchemy==1.3.12',
         'kafka-python==1.4.7',
-        'pyyaml==5.2',
+        'pyyaml==5.4',
     ],
     extras_require={
         'tests': [

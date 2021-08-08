@@ -74,3 +74,8 @@ There's still a lot of stuff to do:
     * Add tests for the reporter service (coming soon).
     * Make the producer emit random events instead of only reading them from a file to have more control over the timestamp of those events.
     * Add new reports, tune the parameters.
+
+License
+-------
+
+The project is licensed under MIT. See `LICENSE <LICENSE>`_.

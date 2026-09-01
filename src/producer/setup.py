@@ -9,7 +9,7 @@ setup(
     packages=['producer', 'utilities'],
     package_dir={'': '.'},
     install_requires=[
-        'kafka-python==1.4.7',
+        'kafka-python==2.3.2',
         'python-dateutil==2.8.1',
         'pyyaml==5.4',
     ],
